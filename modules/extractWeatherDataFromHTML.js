@@ -9,17 +9,20 @@ const extractWeatherDataFromHTML = (html) => {
         const weatherDetail = $(`details#detailIndex${i}`).html();
         
         //TODO: figure out how to put the info inside an object, and organize by date
-        const date = extractDate(weatherDetail);
+        const forecastDate = extractDate(weatherDetail);
         const temps = extractTemps(weatherDetail);
         const condition = extractCondition(weatherDetail);
         const precipitationChance = extractPrecipitationChance(weatherDetail);
+        const d = new Date();
 
-        weatherArray.push({ date, 
-                            highTemp: temps.highTemp, 
-                            lowTemp: temps.lowTemp,
-                            condition,
-                            precipitationChance
-                        });
+        weatherArray.push({ 
+            createdDate: `${d.getFullYear()}/${d.getMonth()}/${d.getDate()}`,
+            forecastDate, 
+            highTemp: temps.highTemp, 
+            lowTemp: temps.lowTemp,
+            condition,
+            precipitationChance
+        });
 
         
     }
