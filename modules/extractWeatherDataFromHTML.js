@@ -26,7 +26,7 @@ const extractWeatherDataFromHTML = (html) => {
 
         
     }
-    console.log(weatherArray);
+    return weatherArray;
 
 }
 
@@ -76,7 +76,8 @@ const extractCondition = (weatherData) => {
 
 const extractPrecipitationChance = (weatherData) => {
     const $ = cheerio.load(weatherData);
-    return $('.DetailsSummary--precip--1a98O span').text();
+    const precipitationChance = $('.DetailsSummary--precip--1a98O span').text();
+    return precipitationChance.match(/[0-9]+/g)[0]
 }
 
 
