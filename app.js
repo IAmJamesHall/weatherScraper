@@ -15,7 +15,7 @@ const url = "https://weather.com/weather/tenday/l/240f381aa3ed298a691a657f8012d0
 // const sequelize = new Sequelize('sqlite::memory:'); // SET UP SEQUELIZE IN-MEMORY DATABASE
 const sequelize = new Sequelize({
     dialect: 'sqlite',
-    storage: './weather.db'
+    storage: './weather.sqlite'
 })
 
 const Forecast = sequelize.define('Forecast', {
@@ -47,5 +47,5 @@ request(url)
         })
         const forecasts = await Forecast.findAll();
         // console.log(forecasts);
+        sequelize.close();
     });
-
