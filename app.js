@@ -11,8 +11,12 @@ const DataTypes = require('sequelize').DataTypes;
 const url = "https://weather.com/weather/tenday/l/240f381aa3ed298a691a657f8012d0f226d176e45df5a3fec59c1c342926d3a3"; //ten-day weather forecast from weather.com
 
 
-// SET UP SEQUELIZE IN-MEMORY DATABASE
-const sequelize = new Sequelize('sqlite::memory:');
+
+// const sequelize = new Sequelize('sqlite::memory:'); // SET UP SEQUELIZE IN-MEMORY DATABASE
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: './weather.db'
+})
 
 const Forecast = sequelize.define('Forecast', {
     createdDate: DataTypes.DATE,
@@ -23,7 +27,7 @@ const Forecast = sequelize.define('Forecast', {
 })
 
 const syncTables = async () => {
-    await Forecast.sync({ force: true }); //remove force:true to stop it from dropping the table before syncing
+    await Forecast.sync(); //use {force:true} to make it drop the table before syncing
 }
 
 request(url)
@@ -42,6 +46,6 @@ request(url)
             })
         })
         const forecasts = await Forecast.findAll();
-        console.log(forecasts);
+        // console.log(forecasts);
     });
 
