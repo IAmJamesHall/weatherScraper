@@ -1,0 +1,18 @@
+/* #app {
+  display: grid;
+  grid-template-columns: auto auto;
+} */
+
+.grid-item {
+    width: 50%;
+    
+}
+
+#highTempChart {
+    float: left;
+}
+
+#lowTempChart {
+    float: right;
+}
+

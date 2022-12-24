@@ -1,0 +1,189 @@
+<html>
+  <head>
+    <title>Weather Data</title>
+  </head>
+
+  <link href="styles.css" rel="stylesheet" />
+
+  <body>
+    <div id="app" class="grid-container">
+      <div class="grid-item">
+        <canvas id="highTempChart"></canvas>
+      </div>
+      <div class="grid-item">
+        <canvas id="lowTempChart"></canvas>
+      </div>
+      <div class="grid-item">
+        <canvas id="precipitationChanceChart"></canvas>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const data = [
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/24",
+          highTemp: "12",
+          lowTemp: "9",
+          condition: "Partly Cloudy",
+          precipitationChance: "2",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/25",
+          highTemp: "21",
+          lowTemp: "10",
+          condition: "Partly Cloudy",
+          precipitationChance: "15",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/26",
+          highTemp: "22",
+          lowTemp: "13",
+          condition: "Partly Cloudy",
+          precipitationChance: "6",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/27",
+          highTemp: "28",
+          lowTemp: "11",
+          condition: "Partly Cloudy",
+          precipitationChance: "20",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/28",
+          highTemp: "34",
+          lowTemp: "24",
+          condition: "Partly Cloudy",
+          precipitationChance: "7",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/29",
+          highTemp: "44",
+          lowTemp: "36",
+          condition: "Mostly Cloudy",
+          precipitationChance: "16",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/30",
+          highTemp: "49",
+          lowTemp: "38",
+          condition: "Mostly Cloudy",
+          precipitationChance: "13",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/12/31",
+          highTemp: "51",
+          lowTemp: "44",
+          condition: "Cloudy",
+          precipitationChance: "24",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/1/1",
+          highTemp: "53",
+          lowTemp: "42",
+          condition: "Showers",
+          precipitationChance: "58",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/1/2",
+          highTemp: "48",
+          lowTemp: "38",
+          condition: "AM Showers",
+          precipitationChance: "41",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/1/3",
+          highTemp: "47",
+          lowTemp: "38",
+          condition: "Cloudy",
+          precipitationChance: "24",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/1/4",
+          highTemp: "45",
+          lowTemp: "36",
+          condition: "Showers",
+          precipitationChance: "56",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/1/5",
+          highTemp: "43",
+          lowTemp: "34",
+          condition: "Rain/Snow Showers",
+          precipitationChance: "44",
+        },
+        {
+          forecastDate: "2022/11/23",
+          createdDate: "2023/1/6",
+          highTemp: "40",
+          lowTemp: "29",
+          condition: "AM Snow Showers",
+          precipitationChance: "32",
+        },
+      ];
+    </script>
+    <script>
+      //highTempChart
+      const highTempChart = document.getElementById("highTempChart");
+      new Chart(highTempChart, {
+        type: "line",
+        data: {
+          labels: data.map((d) => d.createdDate),
+          datasets: [
+            {
+              label: `Predicted High Temperature for ${data[0].forecastDate}`,
+              data: data.map((d) => Number(d.highTemp)),
+              borderWidth: 1,
+            },
+          ],
+        },
+      });
+
+      //lowTempChart
+      const lowTempChart = document.getElementById("lowTempChart");
+      new Chart(lowTempChart, {
+        type: "line",
+        data: {
+          labels: data.map((d) => d.createdDate),
+          datasets: [
+            {
+              label: `Predicted Low Temperature for ${data[0].forecastDate}`,
+              data: data.map((d) => Number(d.lowTemp)),
+              borderWidth: 1,
+            },
+          ],
+        },
+      });
+
+            //precipitationChanceChart
+            const precipitationChanceChart = document.getElementById("precipitationChanceChart");
+      new Chart(precipitationChanceChart, {
+        type: "line",
+        data: {
+          labels: data.map((d) => d.createdDate),
+          datasets: [
+            {
+              label: `Predicted Precipitation Chance for ${data[0].forecastDate}`,
+              data: data.map((d) => Number(d.precipitationChance)),
+              borderWidth: 1,
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

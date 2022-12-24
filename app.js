@@ -35,6 +35,7 @@ request(url)
         console.log('Starting function');
         const weatherArray = extractWeatherDataFromHTML(html);
         await syncTables();
+        console.log(weatherArray);
 
         weatherArray.forEach(async (weatherData) => {
             const data = await Forecast.create({
